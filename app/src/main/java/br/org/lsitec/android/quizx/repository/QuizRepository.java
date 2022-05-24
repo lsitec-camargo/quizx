@@ -2,8 +2,6 @@ package br.org.lsitec.android.quizx.repository;
 
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
 import java.util.List;
 
 import br.org.lsitec.android.quizx.model.Question;

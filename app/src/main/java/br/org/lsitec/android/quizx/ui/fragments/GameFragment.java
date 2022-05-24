@@ -3,7 +3,6 @@ package br.org.lsitec.android.quizx.ui.fragments;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +28,8 @@ public class GameFragment extends Fragment {
     private Question currentQuestion;
     private List<String> answers;
     private int correctAnswerIndex;
+    private int numQuestions;
+    private int score;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -38,6 +39,7 @@ public class GameFragment extends Fragment {
         QuizRepository repository = new QuizRepository();
         repository.getQuestions(result -> {
             questions = result;
+            numQuestions = questions.size();
             setQuiz();
         });
 
@@ -79,7 +81,7 @@ public class GameFragment extends Fragment {
 
                 if (questions.isEmpty()) {
                     Navigation.findNavController(view)
-                            .navigate(GameFragmentDirections.actionGameFragmentToEndgameFragment());
+                            .navigate(GameFragmentDirections.actionGameFragmentToEndgameFragment(score, numQuestions));
                 } else {
                     reloadQuiz();
                 }
@@ -98,9 +100,7 @@ public class GameFragment extends Fragment {
 
     private void checkUserAnswer(int userAnswerIndex) {
         if (userAnswerIndex == correctAnswerIndex) {
-            Log.i(TAG, "correct answer");
-        } else {
-            Log.i(TAG, "incorrect");
+            score++;
         }
         int green = ContextCompat.getColor(requireContext(), R.color.colorPrimaryVariant);
         binding.gameAnswerGroup.getChildAt(correctAnswerIndex)
