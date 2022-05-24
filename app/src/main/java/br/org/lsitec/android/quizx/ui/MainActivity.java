@@ -18,27 +18,9 @@ import retrofit2.internal.EverythingIsNonNull;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String TAG = "MainActivity";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        final QuizService quizService = new RetrofitInstance().getQuizService();
-        Call<List<Question>> call = quizService.getRandomQuestions();
-        call.enqueue(new Callback<List<Question>>() {
-            @Override
-            @EverythingIsNonNull
-            public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
-                Log.i(TAG, "questions: " + response.body());
-            }
-
-            @Override
-            @EverythingIsNonNull
-            public void onFailure(Call<List<Question>> call, Throwable t) {
-                Log.e(TAG, "error: " + t.getMessage());
-            }
-        });
     }
 }

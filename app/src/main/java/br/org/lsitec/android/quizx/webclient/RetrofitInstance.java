@@ -20,5 +20,4 @@ public class RetrofitInstance {
     public QuizService getQuizService() {
         return quizService;
     }
-
 }

@@ -7,12 +7,12 @@ import java.util.List;
 public class Question {
 
     private String question;
-    private List<String> incorrectAnswer;
+    private List<String> incorrectAnswers;
     private String correctAnswer;
 
     public Question(String question, List<String> incorrectAnswer, String correctAnswer) {
         this.question = question;
-        this.incorrectAnswer = incorrectAnswer;
+        this.incorrectAnswers = incorrectAnswer;
         this.correctAnswer = correctAnswer;
     }
 
@@ -21,7 +21,7 @@ public class Question {
     }
 
     public List<String> getIncorrectAnswer() {
-        return incorrectAnswer;
+        return incorrectAnswers;
     }
 
     public String getCorrectAnswer() {
@@ -33,7 +33,7 @@ public class Question {
     public String toString() {
         return "Question{" +
                 "question='" + question + '\'' +
-                ", correctAnswer='" + correctAnswer + '\'' +
+                ", incorrect='" + incorrectAnswers + '\'' +
                 '}';
     }
 }
